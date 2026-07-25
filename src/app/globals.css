@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --header-h: 72px;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  background-color: #fffbf5;
+  color: #22201b;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  /* Prevent iOS Safari from zooming when an editable control receives focus. */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Signature: the "provision drop" — echoes the flame/drop above the logo's i.
+   Used as a recurring section marker instead of generic dots or numerals. */
+.rizq-drop {
+  display: inline-block;
+  width: 9px;
+  height: 13px;
+  background: #f68b1f;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(45deg);
+}
+
+.rizq-drop-lg {
+  width: 16px;
+  height: 22px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(45deg);
+}
+
+/* Signature: the "harvest wave" divider — a soft curved rule echoing the
+   swoosh beneath the logotype, used between major sections in place of a
+   plain straight hairline. */
+.rizq-wave {
+  width: 100%;
+  height: 20px;
+  color: #f0ede6;
+}
+
+.container-rizq {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container-rizq {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.eyebrow {
+  font-family: var(--font-inter);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #d9720a;
+  font-weight: 600;
+}
+
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid #f68b1f;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+::selection {
+  background-color: #fdecd3;
+  color: #22201b;
+}
+
+/* Swiper pagination bullets, restyled to brand */
+.swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  opacity: 1;
+  border-radius: 999px;
+  transition: width 0.25s ease, background 0.25s ease;
+}
+.swiper-pagination-bullet-active {
+  width: 22px;
+  background: #ffffff;
+}
+
+.swiper-wrapper {
+  transition-timing-function: linear !important;
+}
