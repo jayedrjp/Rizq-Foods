@@ -32,7 +32,7 @@ export const viewport: Viewport = {
 // The storefront chrome (Navbar, CategoryNavbar, Footer, cart UI) lives in
 // app/(storefront)/layout.tsx, and the admin chrome lives in
 // app/admin/layout.tsx. This keeps the two experiences fully independent —
-// admin pages never pull in cart state, storefront nav, or storefront fonts
+// admin pages never pull in cart state, storefront nav, or storefront font
 // weight variants they don't need.
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
