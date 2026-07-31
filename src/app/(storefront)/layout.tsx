@@ -18,8 +18,10 @@ export default function StorefrontLayout({
       <CartProvider>
         <WishlistProvider>
           <Navbar />
-          <CategoryNavbar />
-          <main>{children}</main>
+          <div className="pt-[72px]">
+            <CategoryNavbar />
+            <main>{children}</main>
+          </div>
           <Footer />
           <FloatingCart />
           <CartDrawer />

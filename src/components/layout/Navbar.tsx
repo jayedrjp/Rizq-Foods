@@ -10,6 +10,7 @@ import { categories } from "@/data/categories";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [shopOpen, setShopOpen] = useState(false);
   const { itemCount, openDrawer } = useCart();
   const { user, loading } = useAuth();
   const isSignedIn = !loading && Boolean(user);
@@ -23,10 +24,13 @@ export default function Navbar() {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [mobileOpen]);
 
-  const closeMobileMenu = () => setMobileOpen(false);
+  const closeMobileMenu = () => {
+    setMobileOpen(false);
+    setShopOpen(false);
+  };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-ink/8 bg-cream/95 backdrop-blur">
+    <header className="fixed inset-x-0 top-0 z-40 border-b border-ink/8 bg-cream/95 backdrop-blur">
       <div className="container-rizq flex h-[72px] min-w-0 items-center gap-3 md:gap-8">
         <Link href="/" className="focus-ring flex shrink-0 items-center gap-2">
           <Image src="/logo.png" alt="Rizq Foods" width={400} height={140} priority className="h-14 w-auto sm:h-16 md:h-20" />
@@ -127,14 +131,34 @@ export default function Navbar() {
               </button>
             </div>
 
-            <SearchBar className="mb-5" />
             <nav className="flex flex-col text-sm font-medium text-ink">
-              <Link href="/products" onClick={closeMobileMenu} className="focus-ring rounded-lg px-3 py-3 hover:bg-stone">All Products</Link>
-              {categories.map((category) => (
-                <Link key={category.id} href={`/category/${category.slug}`} onClick={closeMobileMenu} className="focus-ring rounded-lg px-3 py-3 hover:bg-stone">
-                  {category.name}
-                </Link>
-              ))}
+              <button
+                type="button"
+                aria-expanded={shopOpen}
+                aria-controls="mobile-shop-navigation"
+                onClick={() => setShopOpen((open) => !open)}
+                className="focus-ring flex w-full items-center justify-between rounded-lg px-3 py-3 text-left font-semibold hover:bg-stone"
+              >
+                <span>Shop</span>
+                <svg
+                  viewBox="0 0 24 24"
+                  className={`h-4 w-4 fill-none stroke-current stroke-2 transition-transform duration-200 ${shopOpen ? "rotate-180" : ""}`}
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+
+              {shopOpen && (
+                <div id="mobile-shop-navigation" className="mb-2 ml-2 border-l border-ink/10 pl-2">
+                  <SearchBar className="mb-3 mt-2" />
+                  <Link href="/products" onClick={closeMobileMenu} className="focus-ring block rounded-lg px-3 py-3 hover:bg-stone">All Products</Link>
+                  {categories.map((category) => (
+                    <Link key={category.id} href={`/category/${category.slug}`} onClick={closeMobileMenu} className="focus-ring block rounded-lg px-3 py-3 hover:bg-stone">
+                      {category.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </nav>
 
             <div className="mt-4 border-t border-ink/8 pt-3 text-sm font-medium text-ink">
